@@ -4,7 +4,11 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.WindowState = FormWindowState.Maximized
 
+
+
         con.Open()
+
+
 
         qry = "select t.*
 From (SELECT ID, MAX(TDS) AS latest_time
@@ -45,6 +49,10 @@ From (SELECT ID, MAX(TDS) AS latest_time
 
         ListBox1.SelectedIndex = 0
 
+        Exit Sub
+
+
+
 
 
     End Sub
@@ -77,7 +85,7 @@ From (SELECT ID, MAX(TDS) AS latest_time
         Form2.TextBox2.Text = Me.TextBox2.Text
         Form2.TextBox3.Text = Me.ListBox1.SelectedIndex.ToString
 
-
+        Me.Hide()
         Form2.Show()
 
 
