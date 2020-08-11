@@ -6,12 +6,14 @@ Public Class Form2
 
         Me.TextBox1.ReadOnly = True
         Me.TextBox2.ReadOnly = True
+
         If Me.TextBox1.Text = "ACTIVE" Then
 
             Me.TextBox1.BackColor = Color.Green
 
         ElseIf Me.TextBox1.Text = "INACTIVE" Then
             Me.TextBox1.BackColor = Color.Red
+
         End If
 
 
@@ -42,27 +44,27 @@ Public Class Form2
         ElseIf TextBox3.Text = "12" Then
             TextBox3.Text = "60L E T1"
         ElseIf TextBox3.Text = "13" Then
-            TextBox3.Text = "60L E T2"
-        ElseIf TextBox3.Text = "14" Then
-            TextBox3.Text = "60L E T3"
-        ElseIf TextBox3.Text = "15" Then
-            TextBox3.Text = "60L E T4"
-        ElseIf TextBox3.Text = "16" Then
-            TextBox3.Text = "60L E T5"
-        ElseIf TextBox3.Text = "17" Then
-            TextBox3.Text = "60L E T6"
-        ElseIf TextBox3.Text = "18" Then
-            TextBox3.Text = "60L E T7"
-        ElseIf TextBox3.Text = "19" Then
             TextBox3.Text = "60L E T1B"
+        ElseIf TextBox3.Text = "14" Then
+            TextBox3.Text = "60L E T2"
+        ElseIf TextBox3.Text = "15" Then
+            TextBox3.Text = "60L E T3"
+        ElseIf TextBox3.Text = "16" Then
+            TextBox3.Text = "60L E T4"
+        ElseIf TextBox3.Text = "17" Then
+            TextBox3.Text = "60L E T5"
+        ElseIf TextBox3.Text = "18" Then
+            TextBox3.Text = "60L E T6"
+        ElseIf TextBox3.Text = "19" Then
+            TextBox3.Text = "60L E T7"
         ElseIf TextBox3.Text = "20" Then
-            TextBox3.Text = "60L_W_T11"
+            TextBox3.Text = "60L W T11"
         ElseIf TextBox3.Text = "21" Then
-            TextBox3.Text = "60L_W_T12"
+            TextBox3.Text = "60L W T12"
         ElseIf TextBox3.Text = "22" Then
-            TextBox3.Text = "60L_W_T13"
+            TextBox3.Text = "60L W T13"
         ElseIf TextBox3.Text = "23" Then
-            TextBox3.Text = "60L_W_T14"
+            TextBox3.Text = "60L W T14"
         End If
 
 
@@ -139,7 +141,7 @@ Public Class Form2
         Me.TextBox1.Text = ""
         Me.TextBox2.Text = ""
         Me.TextBox3.Text = ""
-        Me.ComboBox2.Text = ""
+        Me.ComboBox1.Text = ""
         Me.ComboBox2.Text = ""
         Me.ComboBox3.Text = ""
 
@@ -149,8 +151,17 @@ Public Class Form2
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        Me.TextBox1.Text = ""
+        Me.TextBox2.Text = ""
+        Me.TextBox3.Text = ""
+        Me.ComboBox1.Text = ""
+        Me.ComboBox2.Text = ""
+        Me.ComboBox3.Text = ""
+
         Me.Hide()
-        Form1.Show()
+        Application.Restart()
+
     End Sub
 
     Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs)

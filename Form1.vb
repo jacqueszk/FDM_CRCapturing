@@ -9,7 +9,6 @@ Public Class Form1
         con.Open()
 
 
-
         qry = "select t.*
 From (SELECT ID, MAX(TDS) AS latest_time
            FROM [BussImprovement].[dbo].[KDMTunnel_StatusHistory]
@@ -80,6 +79,11 @@ From (SELECT ID, MAX(TDS) AS latest_time
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+        If Mid(TextBox3.Text, 15, 2) = DatePart(DateInterval.Minute, DateTime.Now) Then
+            MsgBox("Data Loading from previous change, please wait 1 minute")
+            Exit Sub
+        End If
 
         Form2.TextBox1.Text = Me.TextBox1.Text
         Form2.TextBox2.Text = Me.TextBox2.Text
