@@ -132,6 +132,7 @@ Public Class Form2
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
 
+
         If Me.CheckBox1.Checked Then
             If Me.ComboBox4.Text = "" Then
                 MsgBox("Choose delay")
@@ -169,6 +170,7 @@ Public Class Form2
             ElseIf Me.ComboBox3.Text = "" Then
                 MsgBox("Choose Control Room Operator")
                 Exit Sub
+
 
             Else
                 qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.ComboBox1.Text & "','" & Me.ComboBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','" & Me.ComboBox4.Text & "')"
@@ -318,6 +320,7 @@ Public Class Form2
 
         Else
 
+
             qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.TextBox1.Text & "','" & Me.TextBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','Remediated')"
             cmd4 = New SqlCommand(qry4, con)
             'da4 = New SqlDataAdapter(cmd4)
@@ -341,4 +344,6 @@ Public Class Form2
         Application.Restart()
 
     End Sub
+
+
 End Class
