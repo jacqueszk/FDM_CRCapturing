@@ -6,8 +6,16 @@ Public Class Form2
 
         Me.TextBox1.ReadOnly = True
         Me.TextBox2.ReadOnly = True
+        Me.ComboBox4.Enabled = False
 
-        If Me.TextBox1.Text = "ACTIVE" Then
+        ComboBox2.Sorted = True
+
+        If Me.TextBox1.Text = "ACTIVE" And CheckBox1.Enabled = False Then
+
+            Me.TextBox1.BackColor = Color.Orange
+
+
+        ElseIf Me.TextBox1.Text = "ACTIVE" And CheckBox1.Enabled = True Then
 
             Me.TextBox1.BackColor = Color.Green
 
@@ -88,6 +96,7 @@ Public Class Form2
 
         ComboBox2.DataSource = ds3.Tables("MyTunnels3")
         Me.ComboBox2.DisplayMember = "Reason"
+        ComboBox2.Sorted = True
 
         Me.ComboBox1.Text = ""
         Me.ComboBox2.Text = ""
@@ -107,35 +116,72 @@ Public Class Form2
         Me.ComboBox2.Text = ""
         Me.ComboBox3.Text = ""
 
+
+        If CheckBox1.Enabled = False Then
+
+            ComboBox1.Enabled = False
+            ComboBox2.Enabled = False
+
+        End If
+
+
+
+
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        If Me.ComboBox1.Text = "" Then
 
-            MsgBox("No changes made")
-            Exit Sub
+        If Me.CheckBox1.Checked Then
+            If Me.ComboBox4.Text = "" Then
+                MsgBox("Choose delay")
+                Exit Sub
 
-        ElseIf Me.ComboBox2.Text = TextBox2.Text Then
+            ElseIf Me.ComboBox3.Text = "" Then
+                MsgBox("Choose Control Room Operator")
+                Exit Sub
 
-            MsgBox("No changes made")
-            Exit Sub
+            Else
+                qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.TextBox1.Text & "','" & Me.TextBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','" & Me.ComboBox4.Text & "')"
+                cmd4 = New SqlCommand(qry4, con)
+                'da4 = New SqlDataAdapter(cmd4)
+                cmd4.ExecuteNonQuery()
 
-        ElseIf Me.ComboBox2.Text = "" Then
-            MsgBox("Choose reason")
-            Exit Sub
-
-        ElseIf Me.ComboBox3.Text = "" Then
-            MsgBox("Choose Control Room Operator")
-            Exit Sub
+            End If
 
         Else
-            qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.ComboBox1.Text & "','" & Me.ComboBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "')"
-            cmd4 = New SqlCommand(qry4, con)
-            'da4 = New SqlDataAdapter(cmd4)
-            cmd4.ExecuteNonQuery()
+
+
+            If Me.ComboBox1.Text = "" Then
+
+                MsgBox("No changes made")
+                Exit Sub
+
+            ElseIf Me.ComboBox2.Text = Me.TextBox2.Text Then
+
+                MsgBox("No changes made")
+                Exit Sub
+
+            ElseIf Me.ComboBox2.Text = "" Then
+                MsgBox("Choose reason")
+                Exit Sub
+
+            ElseIf Me.ComboBox3.Text = "" Then
+                MsgBox("Choose Control Room Operator")
+                Exit Sub
+
+            Else
+                qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.ComboBox1.Text & "','" & Me.ComboBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','" & Me.ComboBox4.Text & "')"
+                cmd4 = New SqlCommand(qry4, con)
+                'da4 = New SqlDataAdapter(cmd4)
+                cmd4.ExecuteNonQuery()
+
+            End If
+
 
         End If
+
+
         MsgBox("Updated")
 
         Me.TextBox1.Text = ""
@@ -144,6 +190,8 @@ Public Class Form2
         Me.ComboBox1.Text = ""
         Me.ComboBox2.Text = ""
         Me.ComboBox3.Text = ""
+        Me.ComboBox4.Text = ""
+
 
         Me.Hide()
         ' Form1.Refresh()
@@ -171,21 +219,126 @@ Public Class Form2
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
 
         If ComboBox1.Text = "ACTIVE" Then
-            ComboBox2.Text = "NULL"
-            ComboBox2.Enabled = False
+            'ComboBox2.Text = "NULL"
+
+            qry3 = "select * from [BussImprovement].[dbo].[KDM_Dim_TReason] where [Category] like 'ACTIVE'"
+
+            cmd3 = New SqlCommand(qry3, con)
+            da3 = New SqlDataAdapter(cmd3)
+            ds3 = New DataSet
+            da3.Fill(ds3, "MyTunnels3")
+
+            ComboBox2.DataSource = ds3.Tables("MyTunnels3")
+            Me.ComboBox2.DisplayMember = "Reason"
+            ComboBox2.Sorted = True
+            Me.ComboBox1.Text = ""
+            Me.ComboBox2.Text = ""
+            Me.ComboBox3.Text = ""
+
         ElseIf ComboBox1.Text = "INACTIVE" Then
-            ComboBox2.Enabled = True
+
+            qry3 = "select * from [BussImprovement].[dbo].[KDM_Dim_TReason] where [Category] like 'INACTIVE'"
+
+            cmd3 = New SqlCommand(qry3, con)
+            da3 = New SqlDataAdapter(cmd3)
+            ds3 = New DataSet
+            da3.Fill(ds3, "MyTunnels3")
+
+            ComboBox2.DataSource = ds3.Tables("MyTunnels3")
+            Me.ComboBox2.DisplayMember = "Reason"
+            ComboBox2.Sorted = True
+            Me.ComboBox1.Text = ""
+            Me.ComboBox2.Text = ""
+            Me.ComboBox3.Text = ""
+
 
         End If
-
-
+        ComboBox2.Enabled = True
 
     End Sub
 
-    Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+
+        If Me.CheckBox1.Checked Then
+            If Me.TextBox1.Text = "INACTIVE" Then
+                MsgBox("Delay only recorded on ACTIVE tunnels")
+                Me.CheckBox1.Checked = False
+                Exit Sub
+            Else
+                Me.ComboBox4.Enabled = True
+                Me.ComboBox1.Text = ""
+                Me.ComboBox1.Enabled = False
+                Me.ComboBox2.Text = ""
+                Me.ComboBox2.Enabled = False
 
 
+                qry3 = "select * from [BussImprovement].[dbo].[KDM_Dim_TReason] where [Category] like 'DELAY'"
 
+                cmd3 = New SqlCommand(qry3, con)
+                da3 = New SqlDataAdapter(cmd3)
+                ds3 = New DataSet
+                da3.Fill(ds3, "MyTunnels3")
+
+                ComboBox4.DataSource = ds3.Tables("MyTunnels3")
+                Me.ComboBox4.DisplayMember = "Reason"
+                ' ComboBox4.Sorted = True
+                Me.ComboBox1.Text = ""
+                Me.ComboBox2.Text = ""
+                Me.ComboBox3.Text = ""
+                Me.ComboBox4.Text = ""
+
+            End If
+
+        Else
+            Me.ComboBox4.Text = ""
+            Me.ComboBox4.Enabled = False
+            Me.ComboBox1.Text = ""
+            Me.ComboBox1.Enabled = True
+            Me.ComboBox2.Text = ""
+            Me.ComboBox2.Enabled = True
+
+
+        End If
+
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+        If CheckBox1.Enabled = True Then
+            MsgBox("No Delay")
+            Exit Sub
+        ElseIf Me.ComboBox3.Text = "" Then
+            MsgBox("Choose Control Room Operator")
+            Exit Sub
+
+
+        Else
+
+            qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.TextBox1.Text & "','" & Me.TextBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','Remediated')"
+            cmd4 = New SqlCommand(qry4, con)
+            'da4 = New SqlDataAdapter(cmd4)
+            cmd4.ExecuteNonQuery()
+            ComboBox4.Text = ""
+        End If
+
+        MsgBox("Updated")
+
+        Me.TextBox1.Text = ""
+        Me.TextBox2.Text = ""
+        Me.TextBox3.Text = ""
+        Me.ComboBox1.Text = ""
+        Me.ComboBox2.Text = ""
+        Me.ComboBox3.Text = ""
+        Me.ComboBox4.Text = ""
+
+
+        Me.Hide()
+        ' Form1.Refresh()
+        Application.Restart()
 
     End Sub
 End Class

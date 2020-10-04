@@ -34,6 +34,9 @@ Partial Class Form2
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -134,11 +137,41 @@ Partial Class Form2
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "Control Room Operator"
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(523, 70)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(74, 21)
+        Me.CheckBox1.TabIndex = 13
+        Me.CheckBox1.Text = "Delay?"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'ComboBox4
+        '
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Location = New System.Drawing.Point(603, 67)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(266, 24)
+        Me.ComboBox4.TabIndex = 14
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(642, 115)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(182, 34)
+        Me.Button3.TabIndex = 15
+        Me.Button3.Text = "Remove delay"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1010, 584)
+        Me.ClientSize = New System.Drawing.Size(1388, 584)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.ComboBox4)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.DateTimePicker2)
@@ -171,4 +204,7 @@ Partial Class Form2
     Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents ComboBox4 As ComboBox
+    Friend WithEvents Button3 As Button
 End Class

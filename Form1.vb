@@ -34,24 +34,35 @@ From (SELECT ID, MAX(TDS) AS latest_time
         TextBox1.DataBindings.Add("Text", bs, "lStatus")
         TextBox2.DataBindings.Add("Text", bs, "Reason")
         TextBox3.DataBindings.Add("Text", bs, "TDS")
+        TextBox4.DataBindings.Add("Text", bs, "Delay")
 
-        If TextBox1.Text = "ACTIVE" Then
+
+        If TextBox4.Text = "Remediated" Then
+            TextBox4.Text = ""
+
+        End If
+
+
+        If TextBox1.Text = "ACTIVE" And TextBox4.Text = "" Then
 
             TextBox1.BackColor = Color.Green
 
+        ElseIf TextBox1.Text = "ACTIVE" And TextBox4.Text <> "" Then
+
+            TextBox1.BackColor = Color.Orange
+
         ElseIf TextBox1.Text = "INACTIVE" Then
             TextBox1.BackColor = Color.Red
+
         End If
 
         TextBox1.ReadOnly = True
         TextBox2.ReadOnly = True
+        TextBox4.ReadOnly = True
 
         ListBox1.SelectedIndex = 0
 
         Exit Sub
-
-
-
 
 
     End Sub
@@ -63,18 +74,31 @@ From (SELECT ID, MAX(TDS) AS latest_time
             bs.Position = ListBox1.SelectedIndex
 
 
-            If TextBox1.Text = "ACTIVE" Then
+            If TextBox4.Text = "Remediated" Then
+                TextBox4.Text = ""
+
+            End If
+
+
+            If TextBox1.Text = "ACTIVE" And TextBox4.Text = "" Then
 
                 TextBox1.BackColor = Color.Green
 
+            ElseIf TextBox1.Text = "ACTIVE" And TextBox4.Text <> "" Then
+
+                TextBox1.BackColor = Color.Orange
+
             ElseIf TextBox1.Text = "INACTIVE" Then
                 TextBox1.BackColor = Color.Red
+
             End If
+
+            TextBox1.ReadOnly = True
+            TextBox2.ReadOnly = True
+            TextBox4.ReadOnly = True
+
+
         End If
-
-        TextBox1.ReadOnly = True
-        TextBox2.ReadOnly = True
-
 
     End Sub
 
@@ -88,6 +112,17 @@ From (SELECT ID, MAX(TDS) AS latest_time
         Form2.TextBox1.Text = Me.TextBox1.Text
         Form2.TextBox2.Text = Me.TextBox2.Text
         Form2.TextBox3.Text = Me.ListBox1.SelectedIndex.ToString
+        Form2.ComboBox4.Text = Me.TextBox4.Text
+        Form2.Button3.Enabled = False
+
+
+        If Me.TextBox4.Text <> "" Then
+            Form2.CheckBox1.Checked = True
+            Form2.CheckBox1.Enabled = False
+            Form2.Button3.Enabled = True
+
+
+        End If
 
         Me.Hide()
         Form2.Show()

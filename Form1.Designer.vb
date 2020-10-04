@@ -27,11 +27,15 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Tunnel = New System.Windows.Forms.GroupBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Tunnel.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button2
@@ -72,6 +76,9 @@ Partial Class Form1
         '
         'Tunnel
         '
+        Me.Tunnel.Controls.Add(Me.Label4)
+        Me.Tunnel.Controls.Add(Me.TextBox4)
+        Me.Tunnel.Controls.Add(Me.PictureBox1)
         Me.Tunnel.Controls.Add(Me.TextBox3)
         Me.Tunnel.Controls.Add(Me.Label3)
         Me.Tunnel.Controls.Add(Me.TextBox2)
@@ -87,6 +94,22 @@ Partial Class Form1
         Me.Tunnel.TabStop = False
         Me.Tunnel.Text = "Tunnel Status"
         '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(527, 132)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(258, 27)
+        Me.TextBox3.TabIndex = 63
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(395, 135)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(100, 20)
+        Me.Label3.TabIndex = 62
+        Me.Label3.Text = "Last Update"
+        '
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(527, 87)
@@ -101,21 +124,30 @@ Partial Class Form1
         Me.TextBox1.Size = New System.Drawing.Size(258, 27)
         Me.TextBox1.TabIndex = 60
         '
-        'Label3
+        'PictureBox1
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(395, 135)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(100, 20)
-        Me.Label3.TabIndex = 62
-        Me.Label3.Text = "Last Update"
+        Me.PictureBox1.Image = Global.KDM_TunnelStatus.My.Resources.Resources.Petra_Diamonds
+        Me.PictureBox1.Location = New System.Drawing.Point(1061, 26)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(349, 151)
+        Me.PictureBox1.TabIndex = 57
+        Me.PictureBox1.TabStop = False
         '
-        'TextBox3
+        'TextBox4
         '
-        Me.TextBox3.Location = New System.Drawing.Point(527, 132)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(258, 27)
-        Me.TextBox3.TabIndex = 63
+        Me.TextBox4.Location = New System.Drawing.Point(797, 42)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(258, 27)
+        Me.TextBox4.TabIndex = 64
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(888, 14)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(52, 20)
+        Me.Label4.TabIndex = 65
+        Me.Label4.Text = "Delay"
         '
         'Form1
         '
@@ -131,6 +163,7 @@ Partial Class Form1
         Me.Text = "Master - Details (SQL Server) - Tunnel Status"
         Me.Tunnel.ResumeLayout(False)
         Me.Tunnel.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -143,4 +176,7 @@ Partial Class Form1
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TextBox4 As TextBox
 End Class

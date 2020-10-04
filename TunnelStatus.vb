@@ -30,6 +30,9 @@ Module TunnelStatus
     Public qry4 As String
     Public qry5 As String
 
+
+
+
     Public Function GetConString() As String
         Return "Data Source=dat-ser-sql-01.petragroup.local;" &
                        "Initial Catalog=BussImprovement;" &
