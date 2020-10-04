@@ -15,7 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\KOF-SER-INF-01\Mining\Tunnel Status_Tool\</PublishUrl>
+    <PublishUrl>\\KOF-SER-INF-01\Mining\Tunnel Status_Tool\20201004\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
