@@ -1,15 +1,26 @@
 ﻿Imports System.Data.SqlClient
 
+
 Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.WindowState = FormWindowState.Maximized
 
+        'Me.KDMTunnel_StatusHistoryTableAdapter.Fill(Me.BussImprovementDataSet.KDMTunnel_StatusHistory)
+        Me.WindowState = FormWindowState.Maximized
+        x = 0
 
 
         con.Open()
 
 
-        qry = "select t.*
+        qry = "select t.*, 
+case 
+when t.Delay = 'Remediated'  then
+concat(t.[ID],' | ',t.[lStatus],' | ',t.[Reason]) 
+when t.Delay = ''  then
+concat(t.[ID],' | ',t.[lStatus],' | ',t.[Reason]) 
+ELSE
+concat(t.[ID],' | ',t.[lStatus],' | ',t.[Reason],' | ','DELAYED') 
+end as ListBox
 From (SELECT ID, MAX(TDS) AS latest_time
            FROM [BussImprovement].[dbo].[KDMTunnel_StatusHistory]
          GROUP
@@ -25,8 +36,36 @@ From (SELECT ID, MAX(TDS) AS latest_time
         ds = New DataSet
         da.Fill(ds, "MyTunnels")
 
+        ' ListBox1.DrawMode = DrawMode.OwnerDrawFixed
+
         ListBox1.DataSource = ds.Tables("MyTunnels")
-        ListBox1.DisplayMember = "ID"
+        ListBox1.DisplayMember = "ListBox"
+        ListBox1.ValueMember = "ListBox"
+
+
+        qry6 = "select t.*
+From (SELECT ID, MAX(TDS) AS latest_time
+           FROM [BussImprovement].[dbo].[KDMTunnel_StatusHistory]
+         GROUP
+             BY ID) as m
+			 inner 
+			 join [BussImprovement].[dbo].[KDMTunnel_StatusHistory] as t
+			 on t.ID = m.ID
+			 and t.TDS = m.latest_time
+                where t.[Delay] like 'IDLE'
+                order by t.ID Asc"
+
+        cmd6 = New SqlCommand(qry6, con)
+        da6 = New SqlDataAdapter(cmd6)
+        ds6 = New DataSet
+        da6.Fill(ds6, "MyTunnels6")
+
+
+        ListBox2.DataSource = ds6.Tables("MyTunnels6")
+        ListBox2.DisplayMember = "ID"
+        ListBox2.ValueMember = "ID"
+        ListBox2.Enabled = False
+
 
         bs = New BindingSource
         bs.DataSource = ds.Tables("MyTunnels")
@@ -63,6 +102,8 @@ From (SELECT ID, MAX(TDS) AS latest_time
         ListBox1.SelectedIndex = 0
 
         Exit Sub
+
+
 
 
     End Sub
@@ -113,12 +154,19 @@ From (SELECT ID, MAX(TDS) AS latest_time
         Form2.Button3.Enabled = False
 
 
-        If Me.TextBox4.Text <> "" Then
+        If Me.TextBox4.Text <> "" And Me.TextBox4.Text <> "IDLE" Then
             Form2.CheckBox1.Checked = True
             Form2.CheckBox1.Enabled = False
             Form2.Button3.Enabled = True
+            Form2.ComboBox4.Text = Me.TextBox4.Text
 
-
+        ElseIf Me.TextBox4.Text = "IDLE" Then
+            Form2.CheckBox1.Checked = True
+            Form2.CheckBox1.Enabled = False
+            Form2.Button3.Enabled = True
+            Form2.ComboBox4.Text = Me.TextBox4.Text
+            x = 1
+            Form2.DateTimePicker2.Value = Me.TextBox3.Text
         End If
 
         Me.Hide()
@@ -127,7 +175,11 @@ From (SELECT ID, MAX(TDS) AS latest_time
 
     End Sub
 
-    Private Sub Tunnel_Enter(sender As Object, e As EventArgs) Handles Tunnel.Enter
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
+        Application.Restart()
 
     End Sub
+
+
 End Class

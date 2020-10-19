@@ -3,9 +3,11 @@
 Public Class Form2
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        Me.WindowState = FormWindowState.Maximized
 
         Me.TextBox1.ReadOnly = True
         Me.TextBox2.ReadOnly = True
+
         Me.ComboBox4.Enabled = False
 
         ComboBox2.Sorted = True
@@ -24,55 +26,56 @@ Public Class Form2
 
         End If
 
-
         If TextBox3.Text = "0" Then
-            TextBox3.Text = "56L W T1"
+            TextBox3.Text = "56L R T2"
         ElseIf TextBox3.Text = "1" Then
-            TextBox3.Text = "56L W T2"
-        ElseIf TextBox3.Text = "2" Then
-            TextBox3.Text = "56L W T3"
-        ElseIf TextBox3.Text = "3" Then
-            TextBox3.Text = "56L W T4"
-        ElseIf TextBox3.Text = "4" Then
-            TextBox3.Text = "58L E T1"
-        ElseIf TextBox3.Text = "5" Then
-            TextBox3.Text = "58L E T4"
-        ElseIf TextBox3.Text = "6" Then
-            TextBox3.Text = "58L R T5"
-        ElseIf TextBox3.Text = "7" Then
-            TextBox3.Text = "58L R T6"
-        ElseIf TextBox3.Text = "8" Then
-            TextBox3.Text = "58L R T7"
-        ElseIf TextBox3.Text = "9" Then
-            TextBox3.Text = "58L R T8"
-        ElseIf TextBox3.Text = "10" Then
-            TextBox3.Text = "58L R T9"
-        ElseIf TextBox3.Text = "11" Then
-            TextBox3.Text = "60L E T0"
-        ElseIf TextBox3.Text = "12" Then
-            TextBox3.Text = "60L E T1"
-        ElseIf TextBox3.Text = "13" Then
-            TextBox3.Text = "60L E T1B"
-        ElseIf TextBox3.Text = "14" Then
-            TextBox3.Text = "60L E T2"
-        ElseIf TextBox3.Text = "15" Then
-            TextBox3.Text = "60L E T3"
-        ElseIf TextBox3.Text = "16" Then
-            TextBox3.Text = "60L E T4"
-        ElseIf TextBox3.Text = "17" Then
-            TextBox3.Text = "60L E T5"
-        ElseIf TextBox3.Text = "18" Then
-            TextBox3.Text = "60L E T6"
-        ElseIf TextBox3.Text = "19" Then
-            TextBox3.Text = "60L E T7"
-        ElseIf TextBox3.Text = "20" Then
-            TextBox3.Text = "60L W T11"
-        ElseIf TextBox3.Text = "21" Then
-            TextBox3.Text = "60L W T12"
-        ElseIf TextBox3.Text = "22" Then
-            TextBox3.Text = "60L W T13"
-        ElseIf TextBox3.Text = "23" Then
-            TextBox3.Text = "60L W T14"
+            TextBox3.Text = "56L W T1"
+            ElseIf TextBox3.Text = "2" Then
+                TextBox3.Text = "56L W T2"
+            ElseIf TextBox3.Text = "3" Then
+                TextBox3.Text = "56L W T3"
+            ElseIf TextBox3.Text = "4" Then
+                TextBox3.Text = "56L W T4"
+            ElseIf TextBox3.Text = "5" Then
+                TextBox3.Text = "58L E T1"
+            ElseIf TextBox3.Text = "6" Then
+                TextBox3.Text = "58L E T4"
+            ElseIf TextBox3.Text = "7" Then
+                TextBox3.Text = "58L R T5"
+            ElseIf TextBox3.Text = "8" Then
+                TextBox3.Text = "58L R T6"
+            ElseIf TextBox3.Text = "9" Then
+                TextBox3.Text = "58L R T7"
+            ElseIf TextBox3.Text = "10" Then
+                TextBox3.Text = "58L R T8"
+            ElseIf TextBox3.Text = "11" Then
+                TextBox3.Text = "58L R T9"
+            ElseIf TextBox3.Text = "12" Then
+                TextBox3.Text = "60L E T0"
+            ElseIf TextBox3.Text = "13" Then
+                TextBox3.Text = "60L E T1"
+            ElseIf TextBox3.Text = "14" Then
+                TextBox3.Text = "60L E T1B"
+            ElseIf TextBox3.Text = "15" Then
+                TextBox3.Text = "60L E T2"
+            ElseIf TextBox3.Text = "16" Then
+                TextBox3.Text = "60L E T3"
+            ElseIf TextBox3.Text = "17" Then
+                TextBox3.Text = "60L E T4"
+            ElseIf TextBox3.Text = "18" Then
+                TextBox3.Text = "60L E T5"
+            ElseIf TextBox3.Text = "19" Then
+                TextBox3.Text = "60L E T6"
+            ElseIf TextBox3.Text = "20" Then
+                TextBox3.Text = "60L E T7"
+            ElseIf TextBox3.Text = "21" Then
+                TextBox3.Text = "60L W T11"
+            ElseIf TextBox3.Text = "22" Then
+                TextBox3.Text = "60L W T12"
+            ElseIf TextBox3.Text = "23" Then
+                TextBox3.Text = "60L W T13"
+            ElseIf TextBox3.Text = "24" Then
+                TextBox3.Text = "60L W T14"
         End If
 
 
@@ -96,11 +99,9 @@ Public Class Form2
 
         ComboBox2.DataSource = ds3.Tables("MyTunnels3")
         Me.ComboBox2.DisplayMember = "Reason"
-        ComboBox2.Sorted = True
+        ' ComboBox2.Sorted = True
 
-        Me.ComboBox1.Text = ""
-        Me.ComboBox2.Text = ""
-        Me.ComboBox3.Text = ""
+
 
         qry5 = "select * from [BussImprovement].[dbo].[KDM_Dim_CR_Operators]"
 
@@ -111,6 +112,7 @@ Public Class Form2
 
         ComboBox3.DataSource = ds5.Tables("MyTunnels5")
         Me.ComboBox3.DisplayMember = "CROperators"
+
 
         Me.ComboBox1.Text = ""
         Me.ComboBox2.Text = ""
@@ -124,14 +126,24 @@ Public Class Form2
 
         End If
 
+        Me.ComboBox1.Text = ""
+        Me.ComboBox2.Text = ""
+        Me.ComboBox3.Text = ""
 
+        If Me.ComboBox4.Text = "IDLE" Then
+            ComboBox4.Enabled = True
+        End If
 
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
+        If Me.ComboBox4.Text = "IDLE" Then
+            MsgBox("IDLE not Valid")
+            Exit Sub
 
+        End If
 
         If Me.CheckBox1.Checked Then
             If Me.ComboBox4.Text = "" Then
@@ -141,6 +153,20 @@ Public Class Form2
             ElseIf Me.ComboBox3.Text = "" Then
                 MsgBox("Choose Control Room Operator")
                 Exit Sub
+
+            ElseIf x = 1 Then
+
+                MsgBox(Me.DateTimePicker2.Value)
+                qry7 = "UPDATE dbo.KDMTunnel_StatusHistory SET [Delay] = @Delay where [TDS] = @TDS and [ID] = @ID"
+                cmd7 = New SqlCommand(qry7, con)
+                'da4 = New SqlDataAdapter(cmd4)
+
+                'cmd7.Parameters.AddWithValue("@TDS", Me.DateTimePicker2.Value)
+                'cmd7.Parameters.AddWithValue("@Delay", Me.ComboBox4.Text)
+                cmd7.Parameters.Add("@Delay", SqlDbType.VarChar).Value = Me.ComboBox4.Text
+                cmd7.Parameters.Add("@TDS", SqlDbType.DateTime).Value = Me.DateTimePicker2.Value
+                cmd7.Parameters.Add("@ID", SqlDbType.VarChar).Value = Me.TextBox3.Text
+                cmd7.ExecuteNonQuery()
 
             Else
                 qry4 = "Insert into dbo.KDMTunnel_StatusHistory([ID],[TDS],[LHD_Num],[Operator_Name],[lLevel],[Tun_type],[Tunnel],[Orientation],[DP],[lStatus],[Reason],[Order_Tonnes],[Actual_Tonnes],[CROperator],[Delay]) VALUES ('" & Me.TextBox3.Text & "','" & Me.DateTimePicker2.Value & "','NULL','NULL','NULL','NULL','NULL','NULL','NULL','" & Me.TextBox1.Text & "','" & Me.TextBox2.Text & "','NULL','NULL','" & Me.ComboBox3.Text & "','" & Me.ComboBox4.Text & "')"
@@ -158,7 +184,9 @@ Public Class Form2
                 MsgBox("No changes made")
                 Exit Sub
 
-            ElseIf Me.ComboBox2.Text = Me.TextBox2.Text Then
+
+
+            ElseIf Me.ComboBox2.Text = Me.TextBox2.Text And Me.TextBox1.Text = Me.ComboBox1.Text Then
 
                 MsgBox("No changes made")
                 Exit Sub
@@ -233,7 +261,7 @@ Public Class Form2
             ComboBox2.Sorted = True
             Me.ComboBox1.Text = ""
             Me.ComboBox2.Text = ""
-            Me.ComboBox3.Text = ""
+            'Me.ComboBox3.Text = ""
 
         ElseIf ComboBox1.Text = "INACTIVE" Then
 
