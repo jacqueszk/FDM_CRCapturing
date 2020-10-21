@@ -16,7 +16,6 @@ Public Class Form2
 
             Me.TextBox1.BackColor = Color.Orange
 
-
         ElseIf Me.TextBox1.Text = "ACTIVE" And CheckBox1.Enabled = True Then
 
             Me.TextBox1.BackColor = Color.Green
@@ -69,13 +68,13 @@ Public Class Form2
             ElseIf TextBox3.Text = "20" Then
                 TextBox3.Text = "60L E T7"
             ElseIf TextBox3.Text = "21" Then
-                TextBox3.Text = "60L W T11"
-            ElseIf TextBox3.Text = "22" Then
-                TextBox3.Text = "60L W T12"
-            ElseIf TextBox3.Text = "23" Then
-                TextBox3.Text = "60L W T13"
-            ElseIf TextBox3.Text = "24" Then
-                TextBox3.Text = "60L W T14"
+            TextBox3.Text = "60L W T1"
+        ElseIf TextBox3.Text = "22" Then
+            TextBox3.Text = "60L W T2"
+        ElseIf TextBox3.Text = "23" Then
+            TextBox3.Text = "60L W T3"
+        ElseIf TextBox3.Text = "24" Then
+            TextBox3.Text = "60L W T4"
         End If
 
 
