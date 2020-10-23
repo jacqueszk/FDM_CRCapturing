@@ -38,9 +38,16 @@ From (SELECT ID, MAX(TDS) AS latest_time
 
         ' ListBox1.DrawMode = DrawMode.OwnerDrawFixed
 
+
+
         ListBox1.DataSource = ds.Tables("MyTunnels")
         ListBox1.DisplayMember = "ListBox"
         ListBox1.ValueMember = "ListBox"
+
+        Dim fsize As Integer
+        fsize = 8
+        ListBox1.Font = New Font(ListBox1.Font.Name, fsize, ListBox1.Font.Style, ListBox1.Font.Unit)
+
 
 
         qry6 = "select t.*
@@ -100,6 +107,16 @@ From (SELECT ID, MAX(TDS) AS latest_time
         TextBox4.ReadOnly = True
 
         ListBox1.SelectedIndex = 0
+
+        TextBox5.ReadOnly = True
+        TextBox6.ReadOnly = True
+        TextBox7.ReadOnly = True
+        TextBox8.ReadOnly = True
+        TextBox9.ReadOnly = True
+        TextBox10.ReadOnly = True
+
+
+
 
         Exit Sub
 
@@ -175,5 +192,12 @@ From (SELECT ID, MAX(TDS) AS latest_time
 
     End Sub
 
+    Private Sub Tunnel_Enter(sender As Object, e As EventArgs) Handles Tunnel.Enter
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Hide()
+        Form3.Show()
+    End Sub
 End Class
